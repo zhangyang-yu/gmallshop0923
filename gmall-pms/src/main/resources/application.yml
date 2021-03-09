@@ -1,0 +1,45 @@
+server:
+  port: 18081  #配置微服务的端口号
+spring:
+  cloud:
+    nacos:  #配置nacos注册重点的地址
+      discovery:
+        server-addr: 127.0.0.1:8848
+    sentinel:   #配置微服务绑定sentinel服务的地址  指定port作为这个服务与sentinel通信的端口，如果这个端口被占用他会给端口号自动加一
+      transport:
+        port: 8719  #配置微服务与sentinel通信的端口号
+        dashboard: 127.0.0.1:8080   #sentinel服务的地址
+#    alibaba:
+#      seata:   #分布式事务
+#        tx-service-group: gmall_tx_group
+
+    zipkin:  #配置链路追踪的服务
+       base-url: http://127.0.0.1:9411  #zipkin服务的地址
+  #    sender:
+  #      type: web
+  #    discovery-client-enabled: false  #表示不追踪自己
+  sleuth:  #配置链路追踪的采样频率
+    sampler:
+      probability: 1
+  redis:  #配置redis数据库
+    host: 192.168.127.128
+    port: 6379
+  datasource:  #配置mysql数据库
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://127.0.0.1:3306/zhangyang_guli_pms?useUnicode=true&characterEncoding=UTF-8&useSSL=false
+    password: root
+    username: root
+feign:  #配置远程调用失败时的sentinel的熔断
+  sentinel:
+    enabled: true
+mybatis-plus:  #配置mybatis-plus的mapper映射文件
+  mapper-locations: classpath:mapper/pms/*.xml
+  type-aliases-package: com.atguigu.gmall.pms.entity #在mapper文件中可以扫描到entity
+  global-config:  #配置数据库的id使用递增
+    db-config:
+      id-type: auto
+ribbon:
+  MaxAutoRetries: 0 # 同一实例最大重试次数，不包括首次调用，默认0
+  MaxAutoRetriesNextServer: 0 # 重试其他实例的最大重试次数，不包括首次所选的server，默认1
+  ConnectTimeout: 5000
+  ReadTimeout: 5000

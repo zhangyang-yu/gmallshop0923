@@ -17,6 +17,13 @@
     <modules>
         <module>gmall-admin</module>
         <module>gmall-common</module>
+        <module>gmall-generator</module>
+        <module>gmall-gateway</module>
+        <module>gmall-pms</module>
+        <module>gmall-cms</module>
+        <module>gmall-wms</module>
+        <module>gmall-sms</module>
+        <module>gmall-ums</module>
     </modules>
 
     <properties>

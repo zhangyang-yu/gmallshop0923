@@ -1,0 +1,23 @@
+server:
+  port: 8888
+spring:
+  cloud:
+    nacos:
+      discovery:
+        server-addr: localhost:8848
+    gateway:
+      routes:
+        - id: gmall-pms
+          uri: lb://gmall-pms
+          predicates:
+            - Path=/pms/**
+        - id: gmall-wms
+          uri: lb://gmall-wms
+          predicates:
+            - Path=/wms/**
+        - id: gmall-sms
+          uri: lb://gmall-sms
+          predicates:
+            - Path=/sms/**
+
+

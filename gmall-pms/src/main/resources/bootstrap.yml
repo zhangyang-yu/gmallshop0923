@@ -1,0 +1,10 @@
+spring:
+  application:
+    name: gmall-pms  #配置微服务的名称 一般注册中心中的配置文件名字和这个微服务的名字一样，则这个微服务就可以使用这个注册中心中这个注册文件
+  cloud:
+    nacos:
+      config:  #使用nacos配置注册中心
+        server-addr: 127.0.0.1:8848  #配置nacos的地址
+        namespace: 874e26ae-1adb-41e7-93bb-889a92076fca  #配置这个配置文件的命名空间
+        file-extension: yml  #设置配置文件的类型
+        group: DEFAULT_GROUP #设置要连接的配置文件在那个组
